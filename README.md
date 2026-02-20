@@ -1,9 +1,6 @@
-# Bank System (Case 2)
-
+# Bank System Кейс 2
 Консольное ООП-приложение на C++, демонстрирующее простую банковскую систему (кейс 2).
-
-## Сборка и запуск (WSL)
-
+## Сборка и запуск
 ```bash
 rm -rf build && cmake -B build && cmake --build build && ./build/bank_app
 ```
