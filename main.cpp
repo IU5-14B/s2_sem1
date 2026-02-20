@@ -3,13 +3,6 @@
 #include <map>
 
 #include "Bank.h"
-#include "BankAccount.h"
-
-enum class Language {
-    ENGLISH,
-    RUSSIAN,
-    CHINESE
-};
 
 std::map<Language, std::string> languageNames = {
     {Language::ENGLISH, "English"},
@@ -64,6 +57,10 @@ public:
         currentLanguage = lang;
     }
     
+    Language getCurrentLanguage() const {
+        return currentLanguage;
+    }
+    
     std::string get(const std::string& key) const {
         auto langIt = translations.find(currentLanguage);
         if (langIt != translations.end()) {
@@ -72,7 +69,7 @@ public:
                 return keyIt->second;
             }
         }
-        return key; // fallback to key if not found
+        return key;
     }
 };
 
@@ -85,7 +82,7 @@ Language selectLanguage() {
     
     int choice;
     std::cin >> choice;
-    std::cin.ignore(); // clear newline
+    std::cin.ignore();
     
     switch(choice) {
         case 1: return Language::ENGLISH;
@@ -98,10 +95,9 @@ Language selectLanguage() {
 }
 
 int main() {
-    // Select language
     Language lang = selectLanguage();
     Translator t(lang);
-    
+
     Bank bank;
 
     std::cout << "\n" << t.get("create_accounts") << "\n";
@@ -131,15 +127,15 @@ int main() {
 
     std::cout << "\n" << t.get("statements") << "\n";
     if (account1) {
-        account1->printStatement();
+        account1->printStatement(t.getCurrentLanguage());
         std::cout << "\n";
     }
     if (account2) {
-        account2->printStatement();
+        account2->printStatement(t.getCurrentLanguage());
         std::cout << "\n";
     }
     if (account3) {
-        account3->printStatement();
+        account3->printStatement(t.getCurrentLanguage());
         std::cout << "\n";
     }
 
