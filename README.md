@@ -5,10 +5,7 @@
 ## Сборка и запуск (WSL)
 
 ```bash
-mkdir build && cd build
-cmake ..
-make
-./bank_app
+rm -rf build && cmake -B build && cmake --build build && ./build/bank_app
 ```
 
 ## Архитектура
